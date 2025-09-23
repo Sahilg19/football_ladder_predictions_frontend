@@ -12,16 +12,37 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #282c34;   /* dark theme */
+  padding: 0 20px;
+}
+
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between; /* brand left, links right */
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 60px;
   color: white;
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar-links a:hover {
+  text-decoration: underline;
 }
 
 .App-link {
@@ -34,5 +55,40 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+.tables-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* allows stacking on small screens */
+}
+
+/* Standings: smaller width */
+.tables-container > div.standings {
+  flex: 0 0 265px;      /* take up less space */
+  max-width: 265px;
+  overflow-x: hidden;   /* prevent scrolling */
+}
+
+/* Predictions: flexible, scrollable if needed */
+.tables-container > div.predictions {
+  flex: 1;              /* take remaining space */
+  max-width: 100%;
+  overflow-x: auto;     /* horizontal scroll if table is wider than container */
+}
+
+/* Make tables take full width of their containers */
+.tables-container table {
+  width: 100%;
+  table-layout: fixed; /* columns evenly distributed */
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 600px) {
+  .tables-container > div.standings,
+  .tables-container > div.predictions {
+    flex: 1 1 100%;    /* full width on small screens */
+    max-width: 100%;
   }
 }
