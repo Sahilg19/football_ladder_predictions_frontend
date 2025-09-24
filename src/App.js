@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     // Replace with your Flask backend URL if it's different
-    const API_URL = 'https://football-ladder-predictions-backend.onrender.com/all_data'; 
+    const API_URL = process.env.REACT_APP_API_URL;
 
     fetch(API_URL)
       .then(response => {
