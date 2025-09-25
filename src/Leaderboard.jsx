@@ -7,14 +7,13 @@ import Typography from "@mui/material/Typography";
 
 const LeaderCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(2),
-  minWidth: 120,
+  minWidth: 100,
   textAlign: "center",
   borderRadius: "12px",
   boxShadow: theme.shadows[3],
 }));
 
 export default function Leaderboard({ scores }) {
-  // Convert {user: score} → array and sort by score ascending
   const sorted = Object.entries(scores).sort((a, b) => a[1] - b[1]);
 
   const medalStyles = [
@@ -33,9 +32,10 @@ export default function Leaderboard({ scores }) {
         sx={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "flex-end",
+          alignItems: { xs: "center", sm: "flex-end" },
           gap: 2,
           mb: 3,
+          flexDirection: { xs: "column", sm: "row" }, // stack on mobile
         }}
       >
         {/* 2nd place */}
@@ -43,7 +43,8 @@ export default function Leaderboard({ scores }) {
           <LeaderCard
             sx={{
               backgroundColor: medalStyles[1].color,
-              transform: "translateY(20px)", // lower than 1st
+              transform: { xs: "none", sm: "translateY(20px)" },
+              width: { xs: "80%", sm: "auto" },
             }}
           >
             <Typography variant="h6">
@@ -59,7 +60,8 @@ export default function Leaderboard({ scores }) {
             sx={{
               backgroundColor: medalStyles[0].color,
               fontWeight: "bold",
-              transform: "translateY(0)", // highest
+              transform: { xs: "none", sm: "translateY(0)" },
+              width: { xs: "80%", sm: "auto" },
             }}
           >
             <Typography variant="h6">
@@ -74,7 +76,8 @@ export default function Leaderboard({ scores }) {
           <LeaderCard
             sx={{
               backgroundColor: medalStyles[2].color,
-              transform: "translateY(20px)", // lower than 1st
+              transform: { xs: "none", sm: "translateY(20px)" },
+              width: { xs: "80%", sm: "auto" },
             }}
           >
             <Typography variant="h6">
