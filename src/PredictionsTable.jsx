@@ -45,20 +45,20 @@ export default function PredictionsTable({ predictions }) {
 >
   <Table
     sx={{
-      minWidth: users.length * 100 + 50, // each user column ~100px + rank
+      tableLayout: "auto", // 👈 lets columns size based on content
+      minWidth: "max-content", // 👈 ensures it won’t collapse
     }}
   >
     <TableHead>
       <TableRow>
-        <StyledTableCell sx={{ minWidth: 50 }}>Rank</StyledTableCell>
+        <StyledTableCell>Rank</StyledTableCell>
         {users.map(user => (
           <StyledTableCell
             key={user}
             sx={{
-              minWidth: 100,  // ensures columns don’t collapse
-              whiteSpace: 'nowrap',
-              fontWeight: 'bold',
-              textAlign: 'center',
+              whiteSpace: "nowrap", // 👈 keeps names in one line
+              fontWeight: "bold",
+              textAlign: "center",
             }}
           >
             {user}
@@ -67,13 +67,16 @@ export default function PredictionsTable({ predictions }) {
       </TableRow>
     </TableHead>
     <TableBody>
-      {Array.from({ length: Math.max(...users.map(u => predictions[u].length)) }).map((_, index) => (
+      {Array.from({ length: numRows }).map((_, index) => (
         <StyledTableRow key={index}>
-          <StyledTableCell sx={{ minWidth: 50 }}>{index + 1}</StyledTableCell>
+          <StyledTableCell>{index + 1}</StyledTableCell>
           {users.map(user => (
             <StyledTableCell
               key={user}
-              sx={{ minWidth: 100, whiteSpace: 'nowrap', textAlign: 'center' }}
+              sx={{
+                whiteSpace: "nowrap", // 👈 prevents wrapping
+                textAlign: "center",
+              }}
             >
               {predictions[user][index] || ""}
             </StyledTableCell>
@@ -83,6 +86,7 @@ export default function PredictionsTable({ predictions }) {
     </TableBody>
   </Table>
 </TableContainer>
+
 
 
   );

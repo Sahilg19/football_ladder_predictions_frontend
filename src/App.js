@@ -32,7 +32,7 @@ function App() {
       });
   }, []); 
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>Loading...It may take up to 1 minute</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
