@@ -45,7 +45,7 @@ export default function PredictionsTable({ predictions }) {
 >
   <Table
     sx={{
-      minWidth: users.length * 140 + 50, // each user column ~140px + rank
+      minWidth: users.length * 130 + 50, // each user column ~140px + rank
     }}
   >
     <TableHead>
