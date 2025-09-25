@@ -40,26 +40,25 @@ export default function PredictionsTable({ predictions }) {
   component={Paper}
   sx={{
     width: "100%",
-    overflowX: "auto", // 👈 enable scroll
+    overflowX: "auto", // scrolls horizontally if needed
   }}
 >
   <Table
     sx={{
-      tableLayout: "auto",   // 👈 natural sizing
-      width: "max-content",  // 👈 force table to grow as needed
-      minWidth: "100%",      // 👈 don’t collapse smaller than screen
+      minWidth: users.length * 150 + 50, // each user column ~100px + rank
     }}
   >
     <TableHead>
       <TableRow>
-        <StyledTableCell>Rank</StyledTableCell>
+        <StyledTableCell sx={{ minWidth: 50 }}>Rank</StyledTableCell>
         {users.map(user => (
           <StyledTableCell
             key={user}
             sx={{
-              whiteSpace: "nowrap", // 👈 prevent wrapping
-              fontWeight: "bold",
-              textAlign: "center",
+              minWidth: 100,  // ensures columns don’t collapse
+              whiteSpace: 'nowrap',
+              fontWeight: 'bold',
+              textAlign: 'center',
             }}
           >
             {user}
@@ -68,16 +67,13 @@ export default function PredictionsTable({ predictions }) {
       </TableRow>
     </TableHead>
     <TableBody>
-      {Array.from({ length: numRows }).map((_, index) => (
+      {Array.from({ length: Math.max(...users.map(u => predictions[u].length)) }).map((_, index) => (
         <StyledTableRow key={index}>
-          <StyledTableCell>{index + 1}</StyledTableCell>
+          <StyledTableCell sx={{ minWidth: 50 }}>{index + 1}</StyledTableCell>
           {users.map(user => (
             <StyledTableCell
               key={user}
-              sx={{
-                whiteSpace: "nowrap", // 👈 prevents team names from splitting
-                textAlign: "center",
-              }}
+              sx={{ minWidth: 100, whiteSpace: 'nowrap', textAlign: 'center' }}
             >
               {predictions[user][index] || ""}
             </StyledTableCell>
@@ -87,7 +83,6 @@ export default function PredictionsTable({ predictions }) {
     </TableBody>
   </Table>
 </TableContainer>
-
 
 
   );
