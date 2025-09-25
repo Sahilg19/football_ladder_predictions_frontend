@@ -40,13 +40,14 @@ export default function PredictionsTable({ predictions }) {
   component={Paper}
   sx={{
     width: "100%",
-    overflowX: "auto", // scrolls horizontally if needed
+    overflowX: "auto", // 👈 enable scroll
   }}
 >
   <Table
     sx={{
-      tableLayout: "auto", // 👈 lets columns size based on content
-      minWidth: "max-content", // 👈 ensures it won’t collapse
+      tableLayout: "auto",   // 👈 natural sizing
+      width: "max-content",  // 👈 force table to grow as needed
+      minWidth: "100%",      // 👈 don’t collapse smaller than screen
     }}
   >
     <TableHead>
@@ -56,7 +57,7 @@ export default function PredictionsTable({ predictions }) {
           <StyledTableCell
             key={user}
             sx={{
-              whiteSpace: "nowrap", // 👈 keeps names in one line
+              whiteSpace: "nowrap", // 👈 prevent wrapping
               fontWeight: "bold",
               textAlign: "center",
             }}
@@ -74,7 +75,7 @@ export default function PredictionsTable({ predictions }) {
             <StyledTableCell
               key={user}
               sx={{
-                whiteSpace: "nowrap", // 👈 prevents wrapping
+                whiteSpace: "nowrap", // 👈 prevents team names from splitting
                 textAlign: "center",
               }}
             >
