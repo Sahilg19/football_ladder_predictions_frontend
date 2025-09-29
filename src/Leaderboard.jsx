@@ -38,26 +38,11 @@ export default function Leaderboard({ scores }) {
           flexDirection: { xs: "column", sm: "row" }, // stack on mobile
         }}
       >
-        {/* 2nd place */}
-        {podium[1] && (
-          <LeaderCard
-            sx={{
-              backgroundColor: medalStyles[1].color,
-              transform: { xs: "none", sm: "translateY(20px)" },
-              width: { xs: "80%", sm: "auto" },
-            }}
-          >
-            <Typography variant="h6">
-              {medalStyles[1].icon} {podium[1][0]}
-            </Typography>
-            <Typography variant="body1">Score: {podium[1][1]}</Typography>
-          </LeaderCard>
-        )}
-
         {/* 1st place */}
         {podium[0] && (
           <LeaderCard
             sx={{
+              order: { xs: 1, sm: 2 }, // first on mobile, middle on desktop
               backgroundColor: medalStyles[0].color,
               fontWeight: "bold",
               transform: { xs: "none", sm: "translateY(0)" },
@@ -71,10 +56,28 @@ export default function Leaderboard({ scores }) {
           </LeaderCard>
         )}
 
+        {/* 2nd place */}
+        {podium[1] && (
+          <LeaderCard
+            sx={{
+              order: { xs: 2, sm: 1 }, // second on mobile, left on desktop
+              backgroundColor: medalStyles[1].color,
+              transform: { xs: "none", sm: "translateY(20px)" },
+              width: { xs: "80%", sm: "auto" },
+            }}
+          >
+            <Typography variant="h6">
+              {medalStyles[1].icon} {podium[1][0]}
+            </Typography>
+            <Typography variant="body1">Score: {podium[1][1]}</Typography>
+          </LeaderCard>
+        )}
+
         {/* 3rd place */}
         {podium[2] && (
           <LeaderCard
             sx={{
+              order: { xs: 3, sm: 3 }, // third on both
               backgroundColor: medalStyles[2].color,
               transform: { xs: "none", sm: "translateY(20px)" },
               width: { xs: "80%", sm: "auto" },
